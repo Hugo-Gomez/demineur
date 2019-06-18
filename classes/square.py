@@ -4,8 +4,9 @@ class Square:
         self.value = "."
         self.content = 0
 
-    def setContent(self, content):
-        self.content = content
+    def incrContent(self):
+        if not self.content == "B":
+            self.content += 1
 
     def revealContent(self):
         self.value = self.content
@@ -14,4 +15,4 @@ class Square:
         self.content = "B"
 
     def isBomb(self):
-        return self.content == "B" 
+        return self.content == "B"
