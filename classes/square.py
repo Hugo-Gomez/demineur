@@ -8,11 +8,11 @@ class Square:
         if not self.content == "B":
             self.content += 1
 
-    def revealContent(self):
-        self.value = self.content
-
     def setBomb(self):
         self.content = "B"
 
     def isBomb(self):
         return self.content == "B"
+
+    def dig(self):
+        self.value = self.content

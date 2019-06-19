@@ -1,17 +1,13 @@
 from classes.board import Board
+from classes.ascii_art import AsciiArt
 
-print("""\
- ______   _______  _______ _________ _        _______           _______ 
-(  __  \ (  ____ \(       )\__   __/( (    /|(  ____ \|\     /|(  ____ )
-| (  \  )| (    \/| () () |   ) (   |  \  ( || (    \/| )   ( || (    )|
-| |   ) || (__    | || || |   | |   |   \ | || (__    | |   | || (____)|
-| |   | ||  __)   | |(_)| |   | |   | (\ \) ||  __)   | |   | ||     __)
-| |   ) || (      | |   | |   | |   | | \   || (      | |   | || (\ (   
-| (__/  )| (____/\| )   ( |___) (___| )  \  || (____/\| (___) || ) \ \__
-(______/ (_______/|/     \|\_______/|/    )_)(_______/(_______)|/   \__/
-""")
+AsciiArt().printTitle()
 print("By hugomez\n")
-print("------------------------------------------------------------------\n")
-board = Board()
-board.initBoard(5, 2)
-board.printBoard()
+board = Board(3, 1)
+board.initBoard()
+while not board.finished:
+    print("------------------------------------------------------------------\n")
+    board.printBoard()
+    print("\n")
+    move = board.makeMove()
+    board.checkStatus(move)
