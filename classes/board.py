@@ -11,23 +11,53 @@ class Board:
         self.nbBomb = nbBomb
         self.finished = False
 
+    def chooseAction(self):
+        goodInstruction = False
+        while not goodInstruction:
+            try:
+                action = input(">> Press d to dig or f to flag : ")
+                if not isinstance(action, str) or len(action) > 1:
+                    if action != "d" or action != "f":
+                        raise ValueError
+                goodInstruction = True
+                return action
+            except:
+                print("/!\ Bad format, try again\n")
+
     def makeMove(self):
+        action = self.chooseAction()
         try:
-            move = input("Your move in this format -> 00 : ")
+            move = input(">> Your move in this format -> 00 : ")
+            print("\n")
             if len(move) > 2:
                 raise ValueError
             move = [int(i) for i in move]
-            self.board[move[0]][move[1]].dig()
-            return move
+            el = self.board[move[0]][move[1]]
+            if action == "d":
+                if el.value != "@":
+                    el.dig()
+                else:
+                    print("/!\ Position marked, remove flag to dig.")
+                    raise ValueError
+            elif action == "f":
+                if el.value == "." or el.value == "@":
+                    el.mark()
+                else:
+                    print("/!\ Position already discovered.")
+                    raise ValueError
+            return move, action
         except:
-            print("Bad format or invalid coordinates")
+            print("/!\ Bad format or invalid coordinates\n")
 
     def checkStatus(self, move):
         bombCounter = 0
         for row in self.board:
-            bombCounter += [i.value for i in row].count(".")
+            row = [i.value for i in row]
+            bombCounter += row.count(".")
+            bombCounter += row.count("@")
         if move:
-            if self.board[move[0]][move[1]].content == "B":
+            move, action = move
+            if self.board[move[0]][move[1]].content == "B" and action == "d" :
                 self.printBoard()
                 print("BOUUUM !!!")
                 AsciiArt().printLoose()

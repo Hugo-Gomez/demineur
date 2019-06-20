@@ -16,3 +16,9 @@ class Square:
 
     def dig(self):
         self.value = self.content
+
+    def mark(self):
+        if self.value == "@":
+            self.value = "."
+        else:
+            self.value = "@"
