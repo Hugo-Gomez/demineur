@@ -11,7 +11,7 @@ print("""\
 Enjoy !
 """)
 print("By hugomez\n")
-board = Board(3, 1)
+board = Board(5, 1)
 board.initBoard()
 while not board.finished:
     print("------------------------------------------------------------------\n")
