@@ -4,14 +4,14 @@ class Square:
         self.value = "."
         self.content = 0
 
-    def incrContent(self):
+    def increment_content(self):
         if not self.content == "B":
             self.content += 1
 
-    def setBomb(self):
+    def set_bomb(self):
         self.content = "B"
 
-    def isBomb(self):
+    def is_bomb(self):
         return self.content == "B"
 
     def dig(self):
